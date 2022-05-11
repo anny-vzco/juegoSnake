@@ -1,3 +1,12 @@
+"""
+Juego: Snake
+Programador 1: Annya Paulina Verduzco Meza / A01650668
+
+Programador 2: Diego Isunza Garciacano / A01652067
+
+Fecha: 10 / mayo / 2022
+"""
+
 from turtle import *
 from random import randrange
 from freegames import square, vector
@@ -57,6 +66,28 @@ def move():
     update()
     ontimer(move, 100)
 
+
+#La comida podrá moverse al azar un paso a la vez y no deberá de salirse de la ventana,modificación hecha por Annya Verduzco
+def moveFood():
+
+    option = randrange(0,2)
+    if(option == 0):
+        if (food.x == -400):
+            food.x += 10
+        elif (food.x == 300):
+            food.x -= 10
+        else:
+            food.x += randrange(-10, 11, 20)
+    else:
+        if(food.y == -200):
+            food.y += 10
+        elif(food.y == 190):
+            food.y -= 10
+        else:
+            food.y += randrange(-10, 11, 20)
+
+    ontimer(moveFood, 900)
+
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -65,5 +96,6 @@ onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
+moveFood()
 move()
 done()
