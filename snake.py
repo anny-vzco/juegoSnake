@@ -68,25 +68,24 @@ def move():
 
 
 #La comida podrá moverse al azar un paso a la vez y no deberá de salirse de la ventana,modificación hecha por Annya Verduzco
-def moveFood():
-
-    option = randrange(0,2)
+def movingFood():
+    option = randrange(0,5)
     if(option == 0):
-        if (food.x == -400):
+        if (food.x == -200): #se establecen los parametros en x en los que la cómida se moverá dentro del tablero 
             food.x += 10
-        elif (food.x == 300):
+        elif (food.x == 200):
             food.x -= 10
         else:
-            food.x += randrange(-10, 11, 20)
+            food.x += randrange(-10, 10, 20)
     else:
-        if(food.y == -200):
+        if(food.y == -200):#se establecen los parametros en y en los que la cómida se moverá dentro del tablero
             food.y += 10
         elif(food.y == 190):
             food.y -= 10
         else:
-            food.y += randrange(-10, 11, 20)
+            food.y += randrange(-10, 10, 20)
 
-    ontimer(moveFood, 900)
+    ontimer(movingFood, 700) #Velocidad de movimeinto de la comida 
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -96,6 +95,6 @@ onkey(lambda: change(10, 0), 'Right')
 onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
-moveFood()
 move()
+movingFood()
 done()
